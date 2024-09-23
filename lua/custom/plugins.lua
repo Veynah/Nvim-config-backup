@@ -50,7 +50,7 @@ local plugins = {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = "VeryLazy",
     opts = function()
       return require "custom.configs.null-ls"
@@ -66,8 +66,9 @@ local plugins = {
         "black",
         "debugpy",
         "mypy",
-        "ruff",
         "pyright",
+        "lemminx",
+        "biome",
       },
     },
   },
@@ -76,6 +77,51 @@ local plugins = {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
+    end,
+  },
+  {
+    "xiyaowong/transparent.nvim",
+    lazy = false,
+    config = function ()
+      require("transparent").setup({
+        enable = true,
+        groups = {
+          'Normal',
+          'NormalNC',
+          'Comment',
+          'Constant',
+          'Special',
+          'Identifier',
+          'Statement',
+          'PreProc',
+          'Type',
+          'Underlined',
+          'Todo',
+          'String',
+          'Function',
+          'Conditional',
+          'Repeat',
+          'Operator',
+          'Structure',
+          'LineNr',
+          'NonText',
+          'SignColumn',
+          'CursorLine',
+          'CursorLineNr',
+          'StatusLine',
+          'StatusLineNC',
+          'EndOfBuffer',
+  },
+        extra_groups = {
+          "BufferLineTabClose",
+          "BufferLineBufferSelected",
+          "BufferLineFill",
+          "BufferLineBackground",
+          "BufferLineSeparator",
+          "BufferLineIndicatorSelected",
+        },
+        exclude = {},
+      })
     end,
   },
 }

@@ -3,10 +3,25 @@ local null_ls = require("null-ls")
 
 local opts = {
   sources = {
-    null_ls.builtins.formatting.clang_format,
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.diagnostics.mypy,
-    null_ls.builtins.diagnostics.ruff,
+    null_ls.builtins.formatting.clang_format.with({
+      filetypes = {"c", "cpp", "cs"},
+    }),
+
+    null_ls.builtins.formatting.black.with({
+      filetypes = {"python"},
+    }),
+
+    null_ls.builtins.diagnostics.mypy.with({
+      filetypes = {"python"},
+    }),
+
+    null_ls.builtins.formatting.biome.with({
+      filetypes = {"javascript", "typescript", "javascriptreact", "typescriptreact", "json", "jsonc", "css"},
+    }),
+
+    null_ls.builtins.diagnostics.tidy.with({
+      filetypes = {"html", "xml"},
+    })
   },
   on_attach = function (client, bufnr)
     if client.supports_method("textDocument/formatting") then
