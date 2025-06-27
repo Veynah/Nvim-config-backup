@@ -73,6 +73,18 @@ local plugins = {
     },
   },
   {
+    "sphamba/smear-cursor.nvim",
+    lazy = false,
+    opts = {
+            stiffness = 0.8,
+            trailing_stiffness = 0.5,
+            stiffness_insert_mode = 0.6,
+            trailing_stiffness_insert_mode = 0.6,
+            distance_stop_animating = 0.5,
+            time_interval = 7,
+        },
+  },
+  {
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
@@ -82,6 +94,15 @@ local plugins = {
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end,
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
   },
   {
     "xiyaowong/transparent.nvim",
@@ -112,8 +133,6 @@ local plugins = {
           'SignColumn',
           'CursorLine',
           'CursorLineNr',
-          'StatusLine',
-          'StatusLineNC',
           'EndOfBuffer',
   },
         extra_groups = {
@@ -123,6 +142,15 @@ local plugins = {
           "BufferLineBackground",
           "BufferLineSeparator",
           "BufferLineIndicatorSelected",
+          "NormalFloat",
+          "NvimTreeNormal",
+          "LspFloatWinNormal",
+          "Normal",
+          "NormalFloat",
+          "FloatBorder",
+          "TelescopeNormal",
+          "TelescopeBorder",
+          "TelescopePromptBorder",
         },
         exclude = {},
       })

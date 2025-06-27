@@ -21,7 +21,11 @@ local opts = {
 
     null_ls.builtins.diagnostics.tidy.with({
       filetypes = {"html", "xml"},
-    })
+    }),
+    null_ls.builtins.formatting.htmlbeautifier.with({
+      filetypes = {"html"},
+    }),
+
   },
   on_attach = function (client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -29,13 +33,13 @@ local opts = {
         group = augroup,
         buffer = bufnr,
       })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function ()
-          vim.lsp.buf.format({ bufnr = bufnr})
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   group = augroup,
+      --   buffer = bufnr,
+      --   callback = function ()
+      --     vim.lsp.buf.format({ bufnr = bufnr})
+      --   end,
+      -- })
     end
   end,
 }
